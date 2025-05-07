@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:time_plan/app/view/theme/app_theme.dart';
 import 'package:time_plan/app/view/theme/light_theme.dart';
+import 'package:time_plan/app/view/theme/light_theme_blue.dart';
+import 'package:time_plan/app/view/theme/light_theme_brown.dart';
+import 'package:time_plan/app/view/theme/theme_cubit.dart';
 import 'package:time_plan/app/view/widget/social_button.dart';
 
 void main() {
@@ -12,10 +17,17 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: LightTheme().theme,
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+    return BlocProvider(
+      create: (context) => ThemeCubit(),
+      child: BlocBuilder<ThemeCubit, AppTheme>(
+        builder: ( context, state) { 
+          return  MaterialApp(
+          title: 'Flutter Demo',
+          theme: state.theme,
+          home: const MyHomePage(title: 'Flutter Demo Home Page'),
+        );
+         },
+      ),
     );
   }
 }
@@ -64,17 +76,31 @@ class _MyHomePageState extends State<MyHomePage> {
           
               SizedBox(
                 width: double.infinity,
-                child: FilledButton(onPressed: (){}, 
+                child: FilledButton(onPressed: (){
+                  context.read<ThemeCubit>().changeTheme(LightTheme());
+                }, 
                 child: const Text(
-                  'Primary button'
+                  'Primary theme'
                 )),
               ),
               SizedBox( height: 10,),
               SizedBox(
                 width: double.infinity,
-                child: OutlinedButton(onPressed: (){}, 
+                child: OutlinedButton(onPressed: (){
+                  context.read<ThemeCubit>().changeTheme(LightBlueTheme());
+                }, 
                 child: const Text(
-                  'Outlined button'
+                  'Blue theme'
+                )),
+              ),
+              SizedBox( height: 10,),
+              SizedBox(
+                width: double.infinity,
+                child: OutlinedButton(onPressed: (){
+                  context.read<ThemeCubit>().changeTheme(LightBrownTheme());
+                }, 
+                child: const Text(
+                  'Brown theme'
                 )),
               ),
               SizedBox(
