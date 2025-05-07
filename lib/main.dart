@@ -77,7 +77,7 @@ class _MyHomePageState extends State<MyHomePage> {
               SizedBox(
                 width: double.infinity,
                 child: FilledButton(onPressed: (){
-                  context.read<ThemeCubit>().changeTheme(LightTheme());
+                  context.changeTheme(LightTheme());
                 }, 
                 child: const Text(
                   'Primary theme'
@@ -87,7 +87,7 @@ class _MyHomePageState extends State<MyHomePage> {
               SizedBox(
                 width: double.infinity,
                 child: OutlinedButton(onPressed: (){
-                  context.read<ThemeCubit>().changeTheme(LightBlueTheme());
+                  context.changeTheme(LightBlueTheme());
                 }, 
                 child: const Text(
                   'Blue theme'
@@ -97,7 +97,7 @@ class _MyHomePageState extends State<MyHomePage> {
               SizedBox(
                 width: double.infinity,
                 child: OutlinedButton(onPressed: (){
-                  context.read<ThemeCubit>().changeTheme(LightBrownTheme());
+                  context.changeTheme(LightBrownTheme());
                 }, 
                 child: const Text(
                   'Brown theme'

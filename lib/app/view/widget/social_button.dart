@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:time_plan/app/view/style/textStyle.dart';
-import 'package:time_plan/app/view/theme/light_theme.dart';
 import 'package:time_plan/app/view/theme/theme_cubit.dart';
 
 class SocialButton extends StatelessWidget {
@@ -46,7 +44,7 @@ class SocialButton extends StatelessWidget {
     if(isOnlyIcon){
       return IconButton(onPressed: onTap, icon: SvgPicture.asset(iconPath,height: 24, width: 24,),
       style: FilledButton.styleFrom(
-        backgroundColor: context.read<ThemeCubit>().state.colors.surface100,
+        backgroundColor: context.colors.surface100,
         //backgroundColor: LightTheme().colors.surface100,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(16)
@@ -57,13 +55,13 @@ class SocialButton extends StatelessWidget {
     return OutlinedButton.icon(
       onPressed: onTap, 
       label: Text(label,style: TextStyles.titleLarge.copyWith(
-        color: context.read<ThemeCubit>().state.colors.secondary2nd
+        color: context.colors.secondary2nd
         //color: LightTheme().colors.secondary2nd
 
       ),),
       icon: SvgPicture.asset(iconPath,height: 24,width: 24,),
       style: FilledButton.styleFrom(
-        side: BorderSide(color: context.read<ThemeCubit>().state.colors.surface200)
+        side: BorderSide(color: context.colors.surface200)
         //side: BorderSide(color: LightTheme().colors.surface200)
       ),
       );
