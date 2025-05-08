@@ -6,6 +6,7 @@ import 'package:time_plan/app/view/theme/light_theme_blue.dart';
 import 'package:time_plan/app/view/theme/light_theme_brown.dart';
 import 'package:time_plan/app/view/theme/theme_cubit.dart';
 import 'package:time_plan/app/view/widget/social_button.dart';
+import 'package:time_plan/feature/view/onboarding_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -24,7 +25,10 @@ class MyApp extends StatelessWidget {
           return MaterialApp(
             title: 'Flutter Demo',
             theme: state.theme,
-            home: const MyHomePage(title: 'Flutter Demo Home Page'),
+            home: 
+            const OnboardingPage()
+            
+            //const MyHomePage(title: 'Flutter Demo Home Page'),
           );
         },
       ),
@@ -178,7 +182,7 @@ class _MyHomePageState extends State<MyHomePage> {
           currentIndex: currentIndex,
           onTap: (index) {
             setState(() {
-                          currentIndex = index;
+              currentIndex = index;
             });
           },
           items: [
