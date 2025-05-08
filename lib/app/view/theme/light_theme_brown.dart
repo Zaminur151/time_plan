@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:time_plan/app/view/style/custom_outline_input_border.dart';
-import 'package:time_plan/app/view/style/textStyle.dart';
+import 'package:time_plan/app/view/style/text_style.dart';
 import 'package:time_plan/app/view/theme/app_theme.dart';
 
 class LightBrownTheme extends AppTheme {
@@ -62,11 +62,7 @@ class LightBrownTheme extends AppTheme {
   @override
   ThemeData get theme => ThemeData(
     useMaterial3: true,
-    appBarTheme: AppBarTheme(
-      backgroundColor: colors.background,
-      foregroundColor: colors.surface900,
-      titleTextStyle: TextStyles.labelMedium,
-    ),
+    appBarTheme: appBarTheme,
     filledButtonTheme: filledButtonThemeData,
     outlinedButtonTheme: outlineButtonThemeData,
     inputDecorationTheme: inputDecorationTheme,
@@ -90,6 +86,16 @@ class LightBrownTheme extends AppTheme {
       borderRadius: BorderRadius.circular(16)
     ),
   );
+  
+  @override
+  AppBarTheme get appBarTheme => AppBarTheme(
+      backgroundColor: colors.background,
+      foregroundColor: colors.surface900,
+      titleTextStyle: TextStyles.labelMedium,
+    );
+  
+  @override
+  BottomNavigationBarThemeData get bottomNavigationBarThemeData => throw UnimplementedError();
 }
 
 class LightChocolateColors extends AppColors {

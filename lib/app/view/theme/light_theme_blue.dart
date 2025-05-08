@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:time_plan/app/view/style/custom_outline_input_border.dart';
-import 'package:time_plan/app/view/style/textStyle.dart';
+import 'package:time_plan/app/view/style/text_style.dart';
 import 'package:time_plan/app/view/theme/app_theme.dart';
 
 class LightBlueTheme extends AppTheme {
@@ -90,6 +90,14 @@ class LightBlueTheme extends AppTheme {
       borderRadius: BorderRadius.circular(16)
     ),
   );
+  
+  @override
+  // TODO: implement appBarTheme
+  AppBarTheme get appBarTheme => throw UnimplementedError();
+  
+  @override
+  // TODO: implement bottomNavigationBarThemeData
+  BottomNavigationBarThemeData get bottomNavigationBarThemeData => throw UnimplementedError();
 }
 
 class LightBlueColors extends AppColors {

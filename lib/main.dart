@@ -20,13 +20,13 @@ class MyApp extends StatelessWidget {
     return BlocProvider(
       create: (context) => ThemeCubit(),
       child: BlocBuilder<ThemeCubit, AppTheme>(
-        builder: ( context, state) { 
-          return  MaterialApp(
-          title: 'Flutter Demo',
-          theme: state.theme,
-          home: const MyHomePage(title: 'Flutter Demo Home Page'),
-        );
-         },
+        builder: (context, state) {
+          return MaterialApp(
+            title: 'Flutter Demo',
+            theme: state.theme,
+            home: const MyHomePage(title: 'Flutter Demo Home Page'),
+          );
+        },
       ),
     );
   }
@@ -52,6 +52,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
+  int currentIndex = 0;
 
   void _incrementCounter() {
     setState(() {
@@ -62,109 +63,132 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor:  Colors.white,
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        leading: Icon(Icons.access_alarm),
         title: Text(widget.title),
+        actions: [
+          Icon(Icons.calendar_view_day_outlined),
+          Icon(Icons.calendar_view_day_outlined),
+        ],
       ),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-          
-              SizedBox(
-                width: double.infinity,
-                child: FilledButton(onPressed: (){
-                  context.changeTheme(LightTheme());
-                }, 
-                child: const Text(
-                  'Primary theme'
-                )),
-              ),
-              SizedBox( height: 10,),
-              SizedBox(
-                width: double.infinity,
-                child: OutlinedButton(onPressed: (){
-                  context.changeTheme(LightBlueTheme());
-                }, 
-                child: const Text(
-                  'Blue theme'
-                )),
-              ),
-              SizedBox( height: 10,),
-              SizedBox(
-                width: double.infinity,
-                child: OutlinedButton(onPressed: (){
-                  context.changeTheme(LightBrownTheme());
-                }, 
-                child: const Text(
-                  'Brown theme'
-                )),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              TextField(
-                decoration: InputDecoration(
-                  label: const Text('User Name')
+      body: SingleChildScrollView(
+        child: Center(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                SizedBox(
+                  width: double.infinity,
+                  child: FilledButton(
+                      onPressed: () {
+                        context.changeTheme(LightTheme());
+                      },
+                      child: const Text('Primary theme')),
                 ),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              TextField(
-                decoration: InputDecoration(
-                  label: const Text('Email'),
-                  suffixIcon: IconButton(onPressed: (){}, icon: Icon(Icons.visibility_off_outlined))
+                SizedBox(
+                  height: 10,
                 ),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              SizedBox(
-                width: double.infinity,
-                child: SocialButton.google( onTap: (){})
+                SizedBox(
+                  width: double.infinity,
+                  child: OutlinedButton(
+                      onPressed: () {
+                        context.changeTheme(LightBlueTheme());
+                      },
+                      child: const Text('Blue theme')),
                 ),
-              SizedBox(
-                height: 10,
-              ),
-              SizedBox(
-                width: double.infinity,
-                child: SocialButton.apple(onTap: (){})
+                SizedBox(
+                  height: 10,
                 ),
-              SizedBox(
-                height: 10,
-              ),
-              SizedBox(
-                width: double.infinity,
-                child: SocialButton.mail( onTap: (){})
+                SizedBox(
+                  width: double.infinity,
+                  child: OutlinedButton(
+                      onPressed: () {
+                        context.changeTheme(LightBrownTheme());
+                      },
+                      child: const Text('Brown theme')),
                 ),
-              SizedBox(height: 10,),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SocialButton.google(onTap: (){},isOnlyIcon: true,),
-                  SocialButton.apple(onTap: (){},isOnlyIcon: true,),
-                  SocialButton.mail(onTap: (){},isOnlyIcon: true,),
-                ],
-              ),
-
-
-
-
-              const Text(
-                'You have pushed the button this many times:',
-              ),
-              Text(
-                '$_counter',
-                style: Theme.of(context).textTheme.headlineMedium,
-              ),
-            ],
+                SizedBox(
+                  height: 10,
+                ),
+                TextField(
+                  decoration: InputDecoration(label: const Text('User Name')),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                TextField(
+                  decoration: InputDecoration(
+                      label: const Text('Email'),
+                      suffixIcon: IconButton(
+                          onPressed: () {},
+                          icon: Icon(Icons.visibility_off_outlined))),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                SizedBox(
+                    width: double.infinity,
+                    child: SocialButton.google(onTap: () {})),
+                SizedBox(
+                  height: 10,
+                ),
+                SizedBox(
+                    width: double.infinity,
+                    child: SocialButton.apple(onTap: () {})),
+                SizedBox(
+                  height: 10,
+                ),
+                SizedBox(
+                    width: double.infinity,
+                    child: SocialButton.mail(onTap: () {})),
+                SizedBox(
+                  height: 10,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SocialButton.google(
+                      onTap: () {},
+                      isOnlyIcon: true,
+                    ),
+                    SocialButton.apple(
+                      onTap: () {},
+                      isOnlyIcon: true,
+                    ),
+                    SocialButton.mail(
+                      onTap: () {},
+                      isOnlyIcon: true,
+                    ),
+                  ],
+                ),
+                const Text(
+                  'You have pushed the button this many times:',
+                ),
+                Text(
+                  '$_counter',
+                  style: Theme.of(context).textTheme.headlineMedium,
+                ),
+              ],
+            ),
           ),
         ),
       ),
+      bottomNavigationBar: BottomNavigationBar(
+          currentIndex: currentIndex,
+          onTap: (index) {
+            setState(() {
+                          currentIndex = index;
+            });
+          },
+          items: [
+            BottomNavigationBarItem(
+                icon: Icon(Icons.scanner_outlined), label: "Scane"),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.home_max_outlined), label: "Home"),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.person_off_outlined), label: "Profile"),
+          ]),
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
         tooltip: 'Increment',

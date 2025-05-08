@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:time_plan/app/view/style/custom_outline_input_border.dart';
-import 'package:time_plan/app/view/style/textStyle.dart';
+import 'package:time_plan/app/view/style/text_style.dart';
 import 'package:time_plan/app/view/theme/app_theme.dart';
 
 class LightTheme extends AppTheme{
@@ -68,15 +68,11 @@ class LightTheme extends AppTheme{
   @override
   ThemeData get theme => ThemeData(
     useMaterial3: true,
-    //TODO: Refector it later
-    appBarTheme: AppBarTheme(
-      backgroundColor: colors.background,
-      foregroundColor: colors.surface900,
-      titleTextStyle: TextStyles.labelMedium
-    ),
+    appBarTheme: appBarTheme,
     filledButtonTheme: filledButtonThemeData,
     outlinedButtonTheme: outlineButtonThemeData,
-    inputDecorationTheme: inputDecorationTheme,  
+    inputDecorationTheme: inputDecorationTheme,
+    bottomNavigationBarTheme: bottomNavigationBarThemeData,  
   );
   
   @override
@@ -100,6 +96,23 @@ class LightTheme extends AppTheme{
       ),
       borderRadius: BorderRadius.circular(16)
     )
+  );
+  
+  @override
+  AppBarTheme get appBarTheme => AppBarTheme(
+      backgroundColor: colors.background,
+      foregroundColor: colors.surface900,
+      titleTextStyle: TextStyles.labelMedium,
+      centerTitle: true,
+    );
+  
+  @override
+  BottomNavigationBarThemeData get bottomNavigationBarThemeData => BottomNavigationBarThemeData(
+    backgroundColor: colors.background,
+    selectedItemColor: colors.primary,
+    unselectedItemColor: colors.surface500,
+    selectedLabelStyle: TextStyles.bodySmall,
+    unselectedLabelStyle: TextStyles.bodySmall,
   );
 
 }
@@ -152,7 +165,7 @@ class LightColors extends AppColors{
 
   @override
   Color get error => const Color(0xFFFF5555);
-
+ 
   @override
   Color get surface50 => const Color(0xFFF8FAFC);
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:time_plan/app/view/style/textStyle.dart';
+import 'package:time_plan/app/view/style/text_style.dart';
 import 'package:time_plan/app/view/theme/theme_cubit.dart';
 
 class SocialButton extends StatelessWidget {
