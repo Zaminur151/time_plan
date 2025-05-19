@@ -1,11 +1,19 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:time_plan/app/view/theme/theme_cubit.dart';
 import 'package:time_plan/app/view/widget/social_button.dart';
 
-class OnboardingPage extends StatelessWidget {
+class OnboardingPage extends StatefulWidget {
   const OnboardingPage({super.key});
+
+  @override
+  State<OnboardingPage> createState() => _OnboardingPageState();
+}
+
+class _OnboardingPageState extends State<OnboardingPage> {
+  var _activeIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +21,15 @@ class OnboardingPage extends StatelessWidget {
       body: _Backgroung(
         child: Column(
           children: [
-             Expanded(child: __CarouselWidget()),
+             Expanded(child: __CarouselWidget(onPageChanged: (int value) { setState((){
+              _activeIndex = value;
+             }); },)),
+             AnimatedSmoothIndicator(    
+                activeIndex: _activeIndex,    
+                count: _carouselItems.length,    
+                effect: WormEffect(), 
+              ),
+              SizedBox(height: 20,),
             _SocialButtons(onGoogleLogin: () {  }, onAppleLogin: () {  }, onMailLogin: () {  },)
           ]
         ),
@@ -94,7 +110,9 @@ final _carouselItems = <CarouselItem>[
 
 
 class __CarouselWidget extends StatefulWidget {
-  const __CarouselWidget({super.key});
+  const __CarouselWidget({required this.onPageChanged, super.key});
+
+  final ValueChanged<int> onPageChanged;
 
   @override
   State<__CarouselWidget> createState() => ___CarouselWidgetState();
@@ -109,7 +127,9 @@ class ___CarouselWidgetState extends State<__CarouselWidget> {
         aspectRatio: 1/1,
         viewportFraction: 1,
         autoPlay: true,
-        //enlargeCenterPage: true
+        onPageChanged: (index, _) {
+          widget.onPageChanged.call(index);
+        },
       ),
       itemBuilder: (context, index, realIndex){
         final item = _carouselItems[index];

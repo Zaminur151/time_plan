@@ -92,11 +92,9 @@ class LightBlueTheme extends AppTheme {
   );
   
   @override
-  // TODO: implement appBarTheme
   AppBarTheme get appBarTheme => throw UnimplementedError();
   
   @override
-  // TODO: implement bottomNavigationBarThemeData
   BottomNavigationBarThemeData get bottomNavigationBarThemeData => throw UnimplementedError();
 }
 
