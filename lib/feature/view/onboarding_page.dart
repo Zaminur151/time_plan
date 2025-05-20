@@ -4,6 +4,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:time_plan/app/view/theme/theme_cubit.dart';
 import 'package:time_plan/app/view/widget/social_button.dart';
+import 'package:pocketbase/pocketbase.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class OnboardingPage extends StatefulWidget {
   const OnboardingPage({super.key});
@@ -14,6 +16,8 @@ class OnboardingPage extends StatefulWidget {
 
 class _OnboardingPageState extends State<OnboardingPage> {
   var _activeIndex = 0;
+  final pb = PocketBase('http://127.0.0.1:8090');
+// final pb = PocketBase('https://pocketbase.io');
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +34,15 @@ class _OnboardingPageState extends State<OnboardingPage> {
                 effect: WormEffect(), 
               ),
               SizedBox(height: 20,),
-            _SocialButtons(onGoogleLogin: () {  }, onAppleLogin: () {  }, onMailLogin: () {  },)
+            _SocialButtons(onGoogleLogin: () async { 
+              final authData = await pb.collection('users').authWithOAuth2('facebook', (url) async {
+  
+              await launchUrl(url);
+              // print(pb.authStore.isValid);
+              // print(pb.authStore.token);
+              // print(pb.authStore.record?.id);
+            }); }, 
+            onAppleLogin: () {  }, onMailLogin: () {  },)
           ]
         ),
       ),
@@ -83,7 +95,7 @@ class _SocialButtons extends StatelessWidget {
           spacing: 10,
           children: [
             SizedBox(width: 40, child: Divider(thickness: 5, height: 20,)),
-            SizedBox(width: double.infinity, child: SocialButton.google(onTap: (){})),
+            SizedBox(width: double.infinity, child: SocialButton.google(onTap: onGoogleLogin)),
             SizedBox(width: double.infinity, child: SocialButton.apple(onTap: (){})),
             SizedBox(width: double.infinity, child: SocialButton.mail(onTap: (){})),
             SizedBox(height: 5,)
